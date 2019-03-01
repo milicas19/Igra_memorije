@@ -6,6 +6,6 @@ Kartice se poređaju u m redova po m kartica(m x m). Prvi igrač podiže dve kar
 ## Jezici i tehnologije koje su korišćenje u izradi
 Igrica je implementirana u Python-u.
 ## Autori
-Anja Velicković, kontakt:28anja@live.com
-Ivan Stanić, kontakt:ivan.stanic800@gmail.com
+Anja Velicković, kontakt:28anja@live.com  
+Ivan Stanić, kontakt:ivan.stanic800@gmail.com  
 Milica Simić, kontakt:milica7amg@gmail.com
