@@ -8,7 +8,7 @@ Programski jezik: Python
 Biblioteke: random, pygame
 ## Pokretanje
 Pokretanje igrice će biti moguće na Linux-u i Windows-u uz instaliranje biblioteke pygame.  
-Linux-u instalacija:  
+Linux instalacija:  
 *sudo apt-get install python-pygame*  
 Windows instalacija:  
 *-m pip install -U pygame --user*
