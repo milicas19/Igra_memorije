@@ -9,14 +9,14 @@ Biblioteke: random, pygame
 ## Pokretanje
 Pokretanje igrice će biti moguće na Linux-u i Windows-u uz instaliranje biblioteke pygame.  
 Linux instalacija:  
-U terminalu pokrenuti narednu komandu:
+Otvoriti terminal i pokrenuti narednu komandu:
   
-'sudo apt-get install python-pygame'   
+`sudo apt-get install python-pygame`   
 
 Windows instalacija:  
 Otvoriti command prompt u "Run as Administrator" modu i pokrenuti narednu komandu:   
   
-'-m pip install -U pygame --user'  
+`-m pip install -U pygame --user`
 ## Autori
 Anja Velicković, kontakt:28anja@live.com  
 Ivan Stanić, kontakt:ivan.stanic800@gmail.com  
