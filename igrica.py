@@ -1,50 +1,54 @@
-from Tkinter import *
+from tkinter import *
+
+class MatrixOfButtons:
+    #master je root
+    def __init__(self,master,frame,n):
+        photo=PhotoImage(file='a.gif')
+        for i in range(0,n):
+            for j in range(0,n):
+                self.b = Button(frame,image=photo,text = str(i)+''+str(j))
+                self.b.image=photo
+                self.b.grid(row = i,column = j)
 
 def raise_frame(frame):
     frame.tkraise()
 
+def sel():
+    if var1.get()==1:
+        print("1 vs rac")
+        raise_frame(f_one_player)
+        m = MatrixOfButtons(root,f_one_player,var.get())
+    else:
+        print("1 vs 1")
+        raise_frame(f_two_players)
+        m = MatrixOfButtons(root,f_two_players,var.get())
+
 root = Tk()
 
-f_pocetni = Frame(root)
-f_jedan_igrac = Frame(root)
-f_dva_igraca = Frame(root)
+f_start = Frame(root)
+f_one_player = Frame(root)
+f_two_players = Frame(root)
 
-f_jedan_igrac.grid(row=0, column=0, sticky='news')
-f_dva_igraca.grid(row=0, column=0, sticky='news')
-f_pocetni.grid(row=0, column=0, sticky='news')
+f_one_player.grid(row=0, column=0, sticky='news')
+f_two_players.grid(row=0, column=0, sticky='news')
+f_start.grid(row=0, column=0, sticky='news')
 
-Button(f_pocetni, text='Jedan igrac', command=lambda:raise_frame(f_jedan_igrac)).pack()
-Button(f_pocetni, text='Dva igraca', command=lambda:raise_frame(f_dva_igraca)).pack()
-Label(f_pocetni, text='Koliko kartica zelite?').pack()
+Label(f_start, text='Izaberite opciju:').pack()
+var1 = IntVar()
+P1 = Radiobutton(f_start, text="1 vs rac", variable=var1, value=1)
+P1.pack()
+P2 = Radiobutton(f_start, text="1 vs 1", variable=var1, value=2)
+P2.pack()
 
-label=Label(f_jedan_igrac)
-label.pack()
-
-def sel():
-   selection = "You selected the option " + str(var.get())
-   i=0
-   j=0
-   for i in range(0,var.get()):
-      for j in range(0,var.get()):
-         Button(f_jedan_igrac, text=str(i)+" "+str(j)).pack()
-   label.config(text = selection)
-
-   
-def sel3():
-   selection = "You selected the option " + str(var.get())
-   Button(f_jedan_igrac, text='3').pack()
-   Button(f_jedan_igrac, text='4').pack()
-   label.config(text = selection)
-
+Label(f_start, text='Koliko kartica zelite?').pack()
 
 var = IntVar()
-R1 = Radiobutton(f_pocetni, text="4x4", variable=var, value=4, command=sel)
+R1 = Radiobutton(f_start, text="4x4", variable=var, value=4, command=sel)
 R1.pack()
-R2 = Radiobutton(f_pocetni, text="8x8", variable=var, value=8, command=sel)
+R2 = Radiobutton(f_start, text="8x8", variable=var, value=8, command=sel)
 R2.pack()
-R3 = Radiobutton(f_pocetni, text="16x16", variable=var, value=16, command=sel3)
+R3 = Radiobutton(f_start, text="16x16", variable=var, value=16, command=sel)
 R3.pack()
 
-raise_frame(f_pocetni)
+raise_frame(f_start)
 root.mainloop()
-
