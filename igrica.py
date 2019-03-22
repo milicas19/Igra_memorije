@@ -6,14 +6,44 @@ import random
 class MatrixOfButtons:
     #master je root
     def __init__(self,master,frame,n):
-        k = random.randint(1,3)
-        path = os.path.join('slike1',str(k)+".gif")
-        photo=PhotoImage(file=path)
+        self.b=[[0 for x in range(0,n)] for x in range(0,n)]
+        matrica_slika=[[0 for x in range(0,n)] for x in range(0,n)]
+
+        lista_slika=[1,2,3,4,5,6,7,8,9,10,11]#11 broj slika
+        lista_parova=[]
+        #formiramo listu parova        
         for i in range(0,n):
             for j in range(0,n):
-                self.b = Button(frame,image=photo,text = str(i)+''+str(j))
-                self.b.image=photo
-                self.b.grid(row = i,column = j)
+                lista_parova.append((i,j))
+                matrica_slika[i][j]=" " 
+
+        while lista_parova!=[]:
+            broj_slike=random.choice(lista_slika)
+            lista_slika.remove(broj_slike)
+            
+            par=random.choice(lista_parova)
+            lista_parova.remove(par)
+            par1=random.choice(lista_parova)
+            lista_parova.remove(par1)
+        
+            matrica_slika[par[0]][par[1]]="slike1\\"+str(broj_slike)+".gif"
+            print (matrica_slika[par[0]][par[1]]+"\n")
+            matrica_slika[par1[0]][par1[1]]="slike1\\"+str(broj_slike)+".gif"
+            
+        for i in range(0,n):
+            for j in range(0,n):
+                #print (matrica_slika[i][j]+"\n")
+                path=os.path.join(matrica_slika[i][j])
+                photo=PhotoImage(file=path)
+                self.b[i][j] = Button(frame,image=photo,text = str(i)+''+str(j),command=lambda x1=i, y1=j: self.funkcija(x1,y1))
+                self.b[i][j].image=photo
+                self.b[i][j].grid(row = i,column = j)
+                
+    def funkcija(self,i,j):
+        print (str(i))
+        #OVO NE RADI, NISMO URADILI
+        self.b[i][j].config(image=matrica_slika[i][j])
+
 
 def raise_frame(frame):
     frame.tkraise()
