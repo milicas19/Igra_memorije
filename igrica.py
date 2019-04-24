@@ -66,35 +66,36 @@ class MatrixOfButtons:
                        
     def funkcija(self,i,j,photo_matrix,frame):
         #print (str(i))
-        global brojac
-        brojac=brojac+1
-        
-        photo=PhotoImage(file=photo_matrix[i][j])
-        self.b[i][j].config(image=photo)
-
-        #moramo ponovo da postavimo sliku zbog sakupljaca otpadaka, jer ga on pokupi u suprotnom*
-        self.b[i][j].image=photo
-        
         global pom_i,pom_j
         
-        if brojac%2==0:
-            if photo_matrix[i][j]==photo_matrix[pom_i][pom_j]:
-                print ("nakns")#"sklanjaju se"
+        if pom_i!=i or pom_j!=j:
+        
+            global brojac
+            brojac=brojac+1
+        
+            photo=PhotoImage(file=photo_matrix[i][j])
+            self.b[i][j].config(image=photo)
+
+            #moramo ponovo da postavimo sliku zbog sakupljaca otpadaka, jer ga on pokupi u suprotnom*
+            self.b[i][j].image=photo
+        
+            if brojac%2==0:
+                if photo_matrix[i][j]==photo_matrix[pom_i][pom_j]:
+                    print ("nakns")#"sklanjaju se"
+                else:
+                    photo1=PhotoImage(file="slike1\\nesto.png")
+                    frame.after(700, lambda: promeni(self,photo1))
+                    #self.b[i][j].config(image=photo1)
             else:
-                photo1=PhotoImage(file="slike1\\nesto.png")
-                frame.after(700, lambda: promeni(self,photo1))
-                #self.b[i][j].config(image=photo1)
-    
-        else:
-            pom_i=i
-            pom_j=j   
+                pom_i=i
+                pom_j=j   
        # self.b[i][j].destroy()
     
-        def promeni(self,photo):
-            self.b[i][j].config(image=photo)
-            self.b[i][j].image=photo
-            self.b[pom_i][pom_j].config(image=photo1)
-            self.b[pom_i][pom_j].image=photo1
+            def promeni(self,photo):
+                self.b[i][j].config(image=photo)
+                self.b[i][j].image=photo
+                self.b[pom_i][pom_j].config(image=photo1)
+                self.b[pom_i][pom_j].image=photo1
 
 def raise_frame(frame):
     frame.tkraise()
