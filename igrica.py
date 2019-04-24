@@ -2,7 +2,8 @@ from tkinter import *
 import tkinter as tk
 import os
 import random
-
+import time
+#!!! ne radi nam ako neko klikne na isto dugme vise putaa
 #1) staviti sliku kao pozadinu na frejmu f_one_player
 #2) dodati labele za rezultate
 #3) napraviti kada se otkriju dve slike da se proveri da li su iste ili razlicite....
@@ -10,6 +11,8 @@ import random
 #5) 
 
 brojac=0
+pom_i=-1
+pom_j=-1
 
 class MatrixOfButtons:
     #master je root
@@ -54,24 +57,44 @@ class MatrixOfButtons:
                 #self.frames[i][j]=Frame(frame)
                 #self.b[i][j].pack(fill='both',anchor='center',expand=True)
 
-                self.b[i][j] = Button(frame,image=photo,text = str(i)+''+str(j),command=lambda x1=i, y1=j,matrica=photo_matrix: self.funkcija(x1,y1,matrica))
+                self.b[i][j] = Button(frame,image=photo,text = str(i)+''+str(j),command=lambda x1=i, y1=j,matrica=photo_matrix,frame=frame: self.funkcija(x1,y1,matrica,frame))
                 self.b[i][j].image=photo #*
                 self.b[i][j].grid(row = i,column = j,sticky='nsew')
                 
         rezultat=Label(frame, text='labela').grid(column = n+5,row =0)    
         
                        
-    def funkcija(self,i,j,photo_matrix):
+    def funkcija(self,i,j,photo_matrix,frame):
         #print (str(i))
         global brojac
+        brojac=brojac+1
+        
         photo=PhotoImage(file=photo_matrix[i][j])
         self.b[i][j].config(image=photo)
-        brojac=brojac+1
-        print (brojac)
-       # self.b[i][j].destroy()
+
         #moramo ponovo da postavimo sliku zbog sakupljaca otpadaka, jer ga on pokupi u suprotnom*
         self.b[i][j].image=photo
-
+        
+        global pom_i,pom_j
+        
+        if brojac%2==0:
+            if photo_matrix[i][j]==photo_matrix[pom_i][pom_j]:
+                print ("nakns")#"sklanjaju se"
+            else:
+                photo1=PhotoImage(file="slike1\\nesto.png")
+                frame.after(700, lambda: promeni(self,photo1))
+                #self.b[i][j].config(image=photo1)
+    
+        else:
+            pom_i=i
+            pom_j=j   
+       # self.b[i][j].destroy()
+    
+        def promeni(self,photo):
+            self.b[i][j].config(image=photo)
+            self.b[i][j].image=photo
+            self.b[pom_i][pom_j].config(image=photo1)
+            self.b[pom_i][pom_j].image=photo1
 
 def raise_frame(frame):
     frame.tkraise()
