@@ -62,7 +62,8 @@ class MatrixOfButtons:
         
                        
     def funkcija(self,i,j,photo_matrix):
-        #print (str(i))       
+        #print (str(i))
+        global brojac
         photo=PhotoImage(file=photo_matrix[i][j])
         self.b[i][j].config(image=photo)
         brojac=brojac+1
